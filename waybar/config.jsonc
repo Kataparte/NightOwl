@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 26,
+    "spacing": 2,
+    "modules-left": ["group/owl-pill"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["bluetooth", "pulseaudio", "backlight", "battery", "clock", "tray"],
+
+    "group/owl-pill": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/launcher",
+            "hyprland/workspaces"
+        ]
+    },
+
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            "3": "󰨞",
+            "4": "",
+            "5": "󰏆",
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "sort-by-number": true
+    },
+
+    "custom/launcher": {
+        "format": "󰣇",
+        "on-click": "wofi --show drun --prompt 'Search Apps...' --conf ~/.config/wofi/config --style ~/.config/waybar/style.css --conf ~/.config/wofi/config",
+        "tooltip": false
+    },
+
+    "modules-right": ["bluetooth", "pulseaudio", "backlight", "battery", "clock", "tray"],
+
+    "bluetooth": {
+        "format": " {status}",
+        "format-disabled": "󰂲", // an icon for 'off'
+        "format-connected": "󰂱 {device_alias}",
+        "tooltip-format": "{controller_alias}\t{controller_address}",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "on-click": "blueman-manager",
+        "on-click-right": "rfkill toggle bluetooth"
+     },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": " ",
+        "format-icons": {
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-discharging": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "interval": 5
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%A, %B %d, %Y (%R)} 󰃭",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#cba6f7'><b>{}</b></span>",
+                "days":      "<span color='#cdd6f4'><b>{}</b></span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today":    "<span color='#f38ba8'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 10
+    }
+}

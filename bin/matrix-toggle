@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+MATRIX_CLASS="matrix"
+FETCH_CLASS="fetch"
+
+# --- TOGGLE OFF ---
+if pgrep -f "kitty.*--class $MATRIX_CLASS" >/dev/null; then
+    pkill -f "kitty.*--class $MATRIX_CLASS"
+    pkill -f "kitty.*--class $FETCH_CLASS"
+    exit 0
+fi
+
+# --- MATRIX BACKGROUND (DIM, FULLSCREEN) ---
+kitty --class $MATRIX_CLASS \
+      --title "Matrix Rain" \
+      --override background_opacity=0.55 \
+      bash -c '
+        clear
+        tput civis
+        cmatrix -C magenta -u 4
+      ' &
+
+# Let matrix appear first
+sleep 0.4
+
+# --- FASTFETCH OVERLAY (CENTERED, STABLE) ---
+kitty --class $FETCH_CLASS \
+      --title "System Info" \
+      --override background_opacity=0.92 \
+      bash -c '
+        clear
+        tput civis
+        fastfetch --logo-width 20 --color 5
+        sleep infinity
+      ' &

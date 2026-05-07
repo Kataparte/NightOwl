@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# Navigate to your git folder
+cd ~/amethyst-dots || exit
+
+echo "📂 Syncing all Hyprland build files..."
+
+# List of folders to sync
+CONFIGS=(
+    "hypr" "waybar" "matugen" "cava" "kitty" "swaync" "rofi" "btop" 
+    "fastfetch" "nwg-look" "theme" "nvim" "thunar" "ags"
+)
+
+# Loop through and copy them
+for folder in "${CONFIGS[@]}"; do
+    if [ -d "$HOME/.config/$folder" ]; then
+        mkdir -p "$folder"
+        cp -ru "$HOME/.config/$folder/"* "$folder/" 2>/dev/null
+        echo "✅ Synced $folder"
+    fi
+done
+
+# Sync Individual Files (The Shell Environment)
+cp -u ~/.bashrc .bashrc
+echo "✅ Synced .bashrc"
+
+# Sync essential wallpapers (Specifically for Hyprlock)
+mkdir -p wallpapers
+cp -u ~/Pictures/wallpapers/bebop_city.png wallpapers/ 2>/dev/null
+echo "✅ Synced essential wallpapers"
+
+# Export Package Lists (The "Full Picture")
+echo "📝 Exporting package lists..."
+pacman -Qe > pkglist.txt
+pacman -Qm > aurlist.txt
+
+# Sync all scripts from local bin
+mkdir -p scripts
+# This copies everything in your local bin that ends in .sh
+cp -u ~/.local/bin/*.sh scripts/ 2>/dev/null
+echo "✅ Synced all general utility scripts from ~/.local/bin"
+
+# --- 🛡️ PRIVACY GUARD ---
+echo "----------------------------"
+echo "🔍 Checking for secrets..."
+# Scan the local git folder for sensitive strings (excluding .git internal files)
+SECRETS=$(grep -rE "email|password|api_key|token" . --exclude-dir=.git)
+
+if [ ! -z "$SECRETS" ]; then
+    echo "⚠️  POTENTIAL SECRETS DETECTED:"
+    echo "$SECRETS"
+    echo "----------------------------"
+    read -p "🚨 Do you want to continue anyway? (y/N): " CONFIRM
+    if [[ ! $CONFIRM =~ ^[Yy]$ ]]; then
+        echo "❌ Sync aborted. Clean your files first!"
+        exit 1
+    fi
+fi
+
+# --- NEW IMPROVED STATUS CHECK ---
+echo "----------------------------"
+echo "🔍 Current Changes:"
+git status -s
+echo "----------------------------"
+
+# Check if there are actually any changes
+if [[ -z $(git status -s) ]]; then
+  echo "✨ No changes detected. GitHub is already up to date!"
+  exit
+fi
+
+# Git process with Review
+git add .
+read -p "📝 Commit message (Ctrl+C to cancel): " msg
+
+# If you just hit Enter, it uses a default date-based message
+if [ -z "$msg" ]; then
+  msg="Build update: $(date +'%Y-%m-%d %H:%M')"
+fi
+
+git commit -m "$msg"
+git push origin main
+
+echo "🚀 GitHub is now up to date!"

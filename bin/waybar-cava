@@ -1,0 +1,7 @@
+#!/bin/bash
+bar=" ▂▃▄▅▆▇█"
+dict="s/;//g;"
+for i in {0..7}; do dict+="s/$i/${bar:$i:1}/g;"; done
+
+# We use stdbuf -oL to force line-buffering (immediate output)
+stdbuf -oL cava -p "$HOME/.config/cava/config_waybar" | stdbuf -oL sed "$dict"

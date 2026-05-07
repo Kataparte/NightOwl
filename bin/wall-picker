@@ -1,0 +1,34 @@
+#!/bin/bash
+WALL_DIR="$HOME/Pictures/wallpapers"
+THUMB_DIR="$HOME/.cache/thumbnails"
+
+# Ensure cache directory exists
+mkdir -p "$THUMB_DIR"
+
+# 1. This loop checks for thumbnails BEFORE opening Rofi
+CHOICE=$(ls "$WALL_DIR" | grep -E ".jpg|.jpeg|.png|.webp" | while read -r img; do
+    # If the thumbnail doesn't exist yet, create it NOW so Rofi can show it
+    if [ ! -f "$THUMB_DIR/$img" ]; then
+        magick "$WALL_DIR/$img" -thumbnail 200x112^ -gravity center -extent 200x112 "$THUMB_DIR/$img"
+    fi
+    
+    echo -en "$img\0icon\x1f$THUMB_DIR/$img\n"
+done | rofi -dmenu -theme "~/.config/rofi/selector.rasi" -p "󰸉 Wallpapers")
+
+if [ -n "$CHOICE" ]; then
+    # Full path to avoid any 'relative path' confusion
+    FULL_PATH="$WALL_DIR/$CHOICE"
+    
+    # 1. Set wallpaper
+    awww img "$FULL_PATH"
+
+    # 2. Generate colors and CAPTURE the error to a file we can see
+    /home/kataparte/bin/matugen image "$FULL_PATH" > /tmp/matugen_debug.log 2>&1
+
+    # 3. Reload everything
+    hyprctl reload
+    pkill -SIGUSR2 waybar
+    
+    # Just quit AGS for now so we can focus on borders/waybar
+    pkill ags
+fi
