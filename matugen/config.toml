@@ -1,0 +1,61 @@
+[config]
+default_type = "dark"
+
+[templates.hyprland]
+input_path = '~/.config/matugen/hyprland.conf'
+output_path = '~/.config/hypr/colors.conf'
+post_hook = 'hyprctl reload'
+
+[templates.kitty]
+input_path = '~/.config/matugen/kitty.conf'
+output_path = '~/.config/kitty/colors.conf'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi.rasi'
+output_path = '~/.config/rofi/colors.rasi'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar.css'
+output_path = '~/.config/waybar/colors.css'
+# This signal tells Waybar to reload its CSS without a full kill/restart
+post_hook = 'pkill -SIGUSR2 waybar'
+
+[templates.swaync]
+input_path = '~/.config/matugen/templates/swaync.css'
+output_path = '~/.config/swaync/colors.css'
+post_hook = 'swaync-client -rs'
+
+[templates.cava]
+input_path = '~/.config/matugen/templates/cava.conf'
+output_path = '~/.config/cava/config_waybar'
+
+[templates.hyprlock]
+input_path = '/home/kataparte/amethyst-dots/matugen/templates/hyprlock.conf'
+output_path = '/home/kataparte/.config/hypr/hyprlock.conf'
+
+[templates.nvim_colors]
+input_path = '~/.config/matugen/templates/nvim_colors.lua'
+output_path = '~/.config/nvim/lua/config/matugen_colors.lua'
+# post_hook = "pkill -USR1 nvim"
+
+[templates.wleave]
+input_path = '~/.config/matugen/templates/wleave.css'
+output_path = '~/.config/wleave/style.css'
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+
+[templates.fastfetch]
+input_path = '~/.config/matugen/templates/fastfetch.jsonc'
+output_path = '~/.config/fastfetch/config.jsonc'
+
+[templates.matrix]
+input_path = '~/.config/matugen/templates/matrix_alias.sh'
+output_path = '~/.config/matugen/matrix_alias.sh'
+
+[templates.dashboard]
+input_path = '~/.config/matugen/templates/sys_dashboard.sh'
+output_path = '~/.config/hypr/scripts/sys_dashboard.sh'
+post_hook = 'chmod +x ~/.config/hypr/scripts/sys_dashboard.sh'
+

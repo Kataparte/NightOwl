@@ -1,0 +1,44 @@
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-width": 380,
+  "widgets": [
+    "title",
+    "mpris",
+    "volume",
+    "backlight",
+    "buttons-grid",
+    "notifications",
+    "buttons-grid#power"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Control Center",
+      "clear-all-button": true,
+      "button-text": "Clear"
+    },
+    "notifications": {},
+    "mpris": {},
+    "volume": {},
+    "backlight": {},
+    "buttons-grid": {
+      "actions": [
+        { "label": "󰤨", "command": "nm-connection-editor" },
+        { "label": "󰂯", "command": "bluetoothctl power on" },
+        { "label": "󰂯 Buds", "command": "~/.local/bin/buds-toggle.sh" },
+        { "label": "󰄀", "command": "grimblast copy area" }
+      ]
+    },
+    "buttons-grid#power": {
+      "column": 3,
+      "row": 1,
+      "actions": [
+        { "label": "⏻", "command": "systemctl poweroff" },
+        { "label": "󰑓", "command": "systemctl reboot" },
+        { "label": "󰍃", "command": "hyprctl dispatch exit 0" }
+      ]
+    }
+  }
+}

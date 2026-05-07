@@ -1,0 +1,68 @@
+@theme "/usr/share/rofi/themes/sidebar.rasi"
+/* Import Matugen colors HERE so they are available for the blocks below */
+@import "~/.config/rofi/colors.rasi"
+
+/* --- Slim & Bright Overrides --- */
+window {
+    width: 25%;
+    height: 45%;
+    
+    location: north west; 
+    anchor: north west;
+    
+    x-offset: 10px;
+    y-offset: 10px;
+    
+    /* CHANGE: Use the variable 'bg' from your Matugen template instead of hardcoded rgba */
+    background-color: @bg; 
+    border: 2px;
+    border-color: @selected-normal-background;
+    border-radius: 15px;
+}
+
+mainbox {
+    background-color: transparent;
+    padding: 20px;
+}
+
+listview {
+    background-color: transparent;
+    lines: 10;
+    spacing: 5px;
+    scrollbar: false;
+}
+
+element {
+    padding: 8px;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+configuration {
+    icon-theme: "Papirus";
+    modi: "drun,run";
+    show-icons: true;
+    terminal: "kitty";
+    sort: false;
+    disable-history: true;
+    display-drun: " "; 
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+prompt {
+    enabled: true;
+    padding: 0px 5px 0px 0px;
+    text-color: @selected-normal-background; /* Use your Matugen accent */
+    font: "JetBrainsMono Nerd Font 14"; /* Slightly bigger for the icon look */
+}

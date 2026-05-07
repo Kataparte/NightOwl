@@ -1,0 +1,54 @@
+#!/bin/bash
+
+REPO_DIR="$HOME/NightOwl"
+DATE=$(date +%F_%T)
+
+echo "📂 Syncing NightOwl build files..."
+
+# Function to sync and report
+sync_item() {
+    cp -r "$1" "$REPO_DIR/" && echo "✅ Synced $(basename "$1")"
+}
+
+sync_item ~/.config/hypr
+sync_item ~/.config/waybar
+sync_item ~/.config/matugen
+sync_item ~/.config/cava
+sync_item ~/.config/kitty
+sync_item ~/.config/swaync
+sync_item ~/.config/rofi
+sync_item ~/.config/btop
+sync_item ~/.config/fastfetch
+sync_item ~/.local/bin
+cp ~/.bashrc "$REPO_DIR/.bashrc" && echo "✅ Synced .bashrc"
+
+echo "📝 Exporting package lists..."
+pacman -Qqen > "$REPO_DIR/pkglist.txt"
+pacman -Qqem > "$REPO_DIR/aurlist.txt"
+echo "✅ Package lists updated"
+
+echo "----------------------------"
+echo "🔍 Checking for secrets..."
+# Simple check for common secret patterns
+grep -rE "api_key|password|token" "$REPO_DIR" --exclude-dir=.git
+echo "----------------------------"
+
+cd "$REPO_DIR" || exit
+
+echo "🔍 Current Changes:"
+git status --short
+echo "----------------------------"
+
+echo "📝 Commit message (Ctrl+C to cancel):"
+read -r msg
+
+if [ -z "$msg" ]; then
+  msg="NightOwl Update: $DATE"
+fi
+
+git add .
+git commit -m "$msg"
+git push origin main
+
+echo "----------------------------"
+echo "🚀 NightOwl is in the cloud!"
