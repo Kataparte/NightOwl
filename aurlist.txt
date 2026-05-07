@@ -1,27 +1,40 @@
-blesh
-bun-bin
-google-chrome
-grimblast-git
-libastal-battery-git
-libastal-gjs-git
-libastal-lua-git
-libastal-mpris-git
-libastal-network-git
-matugen-bin
-mongodb-bin
-neo-matrix
-networkmanager-dmenu-git
-onlyoffice-bin
-peaclock
-pipes.sh
-proton-ge-custom-bin
-python-gpustat
-rofi-bluetooth-git
-ttf-ms-fonts
-unimatrix-git
-visual-studio-code-bin
-waypaper
-wf-recorder-git
-wlogout
-yay
-yay-debug
+blesh 0.3.4-5
+bun-bin 1.3.11-1
+google-chrome 148.0.7778.96-1
+grimblast-git r163.1f71628-1
+lib32-gst-plugins-base-libs 1.28.1-3
+lib32-gstreamer 1.28.1-3
+lib32-gstreamer-debug 1.28.1-3
+lib32-openssl-1.1 1.1.1.w-2
+libastal-battery-git r855.7d1fac8-1
+libastal-git r855.7d1fac8-1
+libastal-gjs-git r855.7d1fac8-1
+libastal-io-git r855.7d1fac8-1
+libastal-lua-git 1:r30.edb48de-1
+libastal-mpris-git r855.7d1fac8-1
+libastal-network-git r855.7d1fac8-1
+matugen-bin 4.1.0-1
+matugen-bin-debug 4.1.0-1
+mongodb-bin 8.2.7-2
+mongodb-bin-debug 8.2.7-2
+mongosh-bin 2.8.3-1
+mongosh-bin-debug 2.8.3-1
+neo-matrix 0.6.1-3
+networkmanager-dmenu-git r237.bda983f-1
+onlyoffice-bin 9.3.1-1
+openssl-1.1 1.1.1.w-2
+peaclock 0.4.3-2
+pipes.sh 1.3.0-1
+proton-ge-custom-bin 1:GE_Proton10_34-1
+python-gpustat 1:1.1.1-1
+python-imageio-ffmpeg 0.6.0-2
+python-screeninfo 0.8.1-2
+rofi-bluetooth-git r41.0cca4d4-1
+ttf-ms-fonts 2.0-12
+unimatrix-git r89.5cf67aa-1
+visual-studio-code-bin 1.119.0-1
+waypaper 2.8-1
+wf-recorder-git r233.9da69a7-1
+wlogout 1.2.2-0
+yay 12.5.7-1
+yay-debug 12.5.7-1
