@@ -16,6 +16,7 @@ libastal-io-git r855.7d1fac8-1
 libastal-lua-git 1:r30.edb48de-1
 libastal-mpris-git r855.7d1fac8-1
 libastal-network-git r855.7d1fac8-1
+libsoup 2.74.3-4
 matugen-bin 4.1.0-1
 matugen-bin-debug 4.1.0-1
 mongodb-bin 8.2.7-2
@@ -40,5 +41,7 @@ visual-studio-code-bin 1.120.0-1
 waypaper 2.8-1
 wf-recorder-git r233.9da69a7-1
 wlogout 1.2.2-0
+wshowkeys-git r6.308fc9f-1
+wshowkeys-git-debug r6.308fc9f-1
 yay 12.5.7-1
 yay-debug 12.5.7-1

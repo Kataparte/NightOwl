@@ -9,7 +9,7 @@
     "spacing": 2,
     "modules-left": ["group/owl-pill"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["bluetooth", "pulseaudio", "backlight", "battery", "clock", "tray"],
+    "modules-right": ["bluetooth", "pulseaudio", "backlight", "battery", "clock", "tray"],    
 
     "group/owl-pill": {
         "orientation": "horizontal",
@@ -40,8 +40,6 @@
         "on-click": "wofi --show drun --prompt 'Search Apps...' --conf ~/.config/wofi/config --style ~/.config/waybar/style.css --conf ~/.config/wofi/config",
         "tooltip": false
     },
-
-    "modules-right": ["bluetooth", "pulseaudio", "backlight", "battery", "clock", "tray"],
 
     "bluetooth": {
         "format": " {status}",
@@ -101,5 +99,17 @@
     "tray": {
         "icon-size": 16,
         "spacing": 10
+    },
+
+    "custom/reboot": {
+        "format": "󰜉",
+        "tooltip-format": "Reboot System",
+        "on-click": "zenity --question --text='Reboot the system?' && reboot"
+    },
+
+    "custom/power": {
+        "format": "󰐥",
+        "tooltip-format": "Shutdown System",
+        "on-click": "zenity --question --text='Shutdown the system?' && poweroff"
     }
 }

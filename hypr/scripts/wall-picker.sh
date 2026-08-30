@@ -71,5 +71,9 @@ gen_list() {
 
 # 4. Handle selection
 if [ -n "$CHOICE" ]; then
-    bash ~/.config/hypr/scripts/wall.sh "$WALL_DIR/$CHOICE"
+    FULL_PATH="$WALL_DIR/$CHOICE"
+    # Save the choice so it persists after reboot
+    echo "$FULL_PATH" > "$HOME/.cache/current_wallpaper"
+    # Apply the wallpaper and colors
+    bash ~/.config/hypr/scripts/wall.sh "$FULL_PATH"
 fi

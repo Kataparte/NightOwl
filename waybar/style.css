@@ -85,3 +85,20 @@ window#waybar {
     background-color: #313244;
     color: #45475a;
 }
+
+#custom-reboot,
+#custom-power {
+    background-color: #1e1e2e;
+    padding: 0px 10px;
+    border-radius: 12px;
+    margin: 2px 3px;
+    font-size: 14px;
+}
+
+#custom-reboot {
+    color: #caa4e8;
+}
+
+#custom-power {
+    color: #f38ba8;
+}
